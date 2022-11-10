@@ -31,6 +31,9 @@ pip install realesrgan
 # clone this repo
 ```
 
+## Create telegram bot with BotFather and get the TELEGRAM_BOT_TOKEN
+https://telegram.me/BotFather
+
 ## install dependencies
 ```
 nvm use
