@@ -1,6 +1,8 @@
 # instagram-unfollowers-tracker
 Telegram bot written in node typescript for GFPGAN Real-world Face Restoration tool
 
+![telegram_bot_usage_example](https://github.com/Harduex/GFPGAN_telegram_bot/blob/master/docs/telegram_bot_usage_example.jpg?raw=true "Example Usage")
+
 ## Install GFPGAN
 
 ### Clone repo
