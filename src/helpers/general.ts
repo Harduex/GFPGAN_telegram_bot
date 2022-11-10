@@ -41,6 +41,12 @@ export const fileExists = (srcPath: fs.PathLike): boolean => {
   return fs.existsSync(srcPath);
 };
 
+export const createDirIfNotExists = (path) => {
+  if (!fileExists(path)) {
+    fs.mkdirSync(path, { recursive: true });
+  }
+};
+
 export const logger = async (text, ctx): Promise<any> => {
   console.log(text);
   await ctx.reply(text);
@@ -48,4 +54,12 @@ export const logger = async (text, ctx): Promise<any> => {
 
 export const padNumber = (n: number): string => {
   return String(n).padStart(2, "0");
+};
+
+export const removeFilenameFromPath = (path: string): string => {
+  return path.substring(0, path.lastIndexOf("/"));
+};
+
+export const removeDir = (path: string) => {
+  fs.rmSync(path, { recursive: true, force: true });
 };

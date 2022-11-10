@@ -1,4 +1,8 @@
-import { logger } from "../helpers/general";
+import {
+  createDirIfNotExists,
+  logger,
+  removeFilenameFromPath,
+} from "../helpers/general";
 import { Context } from "telegraf";
 import { execSync } from "child_process";
 import * as fs from "fs";
@@ -24,6 +28,8 @@ export const uploadImageFromTelegram = async (ctx, imageFileId, imagePath) => {
 };
 
 export const downloadImage = async (url: string, path) => {
+  const outputDir = removeFilenameFromPath(path);
+  createDirIfNotExists(outputDir);
   const writer = fs.createWriteStream(path);
 
   const response = await axios({
@@ -41,6 +47,17 @@ export const downloadImage = async (url: string, path) => {
 };
 
 export const sendUpscaledImage = async (ctx, imagePath) => {
+  const outputDir = removeFilenameFromPath(imagePath);
+  createDirIfNotExists(outputDir);
   await logger(`Upscaled image result:`, ctx);
   return ctx.replyWithPhoto({ source: imagePath });
+};
+
+export const sendMultipleImages = async (ctx, imagesPath) => {
+  createDirIfNotExists(imagesPath);
+  const filenames = fs.readdirSync(imagesPath);
+  await logger(`Sending images:`, ctx);
+  for (const key in filenames) {
+    await ctx.replyWithPhoto({ source: `${imagesPath}/${filenames[key]}` });
+  }
 };

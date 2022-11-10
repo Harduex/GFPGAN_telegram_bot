@@ -60,3 +60,9 @@ DATA_PATH="/path/to/data"
 $ npm i
 $ npm run start:dev
 ```
+Send /help from your telegram bot to check all commands.
+```
+/cropped_faces
+/restored_faces
+/cmp
+```
